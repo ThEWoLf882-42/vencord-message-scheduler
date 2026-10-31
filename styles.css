@@ -249,6 +249,17 @@
     margin-bottom: 12px;
 }
 
+.vc-ms-countdown {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 10px;
+    color: var(--text-link, #8b9aff);
+    font-size: 13px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
 .vc-ms-card-error {
     font-size: 12px;
     margin: 8px 0;

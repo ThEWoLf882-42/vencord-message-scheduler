@@ -13,6 +13,7 @@ import { definePluginSettings } from "@api/Settings";
 import { Button } from "@components/Button";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Logger } from "@utils/Logger";
+import { formatDuration } from "@utils/text";
 import definePlugin, { IconComponent, OptionType } from "@utils/types";
 import { RenderModalProps } from "@vencord/discord-types";
 import { findByPropsLazy } from "@webpack";
@@ -138,6 +139,7 @@ const repeatLabels: Record<Recurrence, string> = {
 };
 
 const formatTime = (time: number) => new Date(time).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
+const formatCountdown = (time: number, now: number) => time <= now ? "Due now" : `Sends in ${formatDuration(Math.ceil((time - now) / 1000) * 1000, true)}`;
 const errorText = (error: unknown) => error instanceof Error ? error.message : "Something went wrong. Please try again.";
 const initialTime = () => toLocalDateTime(Date.now() + 10 * 60_000);
 
@@ -171,6 +173,7 @@ const SchedulerModal = ErrorBoundary.wrap(function SchedulerModal(props: Schedul
     const [interval, setIntervalValue] = useState("60");
     const [allowMentions, setAllowMentions] = useState(false);
     const [filter, setFilter] = useState("active");
+    const [now, setNow] = useState(Date.now);
     const switchedAccount = openedAs !== accountId();
     const activeCount = messages.filter(item => !["sent"].includes(item.status)).length;
 
@@ -189,6 +192,13 @@ const SchedulerModal = ErrorBoundary.wrap(function SchedulerModal(props: Schedul
         const refreshTimer = setInterval(() => void refresh(), 3000);
         return () => clearInterval(refreshTimer);
     }, []);
+
+    useEffect(() => {
+        if (tab !== "queue") return;
+        setNow(Date.now());
+        const countdownTimer = setInterval(() => setNow(Date.now()), 1000);
+        return () => clearInterval(countdownTimer);
+    }, [tab]);
 
     async function perform(action: () => Promise<void>) {
         setWorking(true);
@@ -350,6 +360,12 @@ const SchedulerModal = ErrorBoundary.wrap(function SchedulerModal(props: Schedul
                                             <span className="vc-ms-status" data-status={message.status}>{message.status}</span>
                                         </div>
                                         <p className="vc-ms-message">{message.content}</p>
+                                        {message.status === "scheduled" && (
+                                            <p className="vc-ms-countdown">
+                                                <ClockIcon width={16} height={16} />
+                                                <span>{settings.store.paused ? "Sending paused" : formatCountdown(message.scheduledAt, now)}</span>
+                                            </p>
+                                        )}
                                         <div className="vc-ms-meta">
                                             <span>{message.status === "sent" ? "Sent" : "Scheduled"} · {formatTime(message.status === "sent" ? message.lastSentAt! : message.scheduledAt)}</span>
                                             <span>{message.recurrence === "interval" ? `Every ${message.intervalMinutes} min` : repeatLabels[message.recurrence]}</span>

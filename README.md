@@ -21,6 +21,8 @@ Restart Discord completely, then enable **MessageScheduler** in **User Settings 
 
 Select the clock button in a channel's chat bar or run `/schedule`. Choose a future time, review your message, and save it. The **Your queue** tab lets you edit, pause, cancel, or reschedule messages. The manager is also available in the plugin settings.
 
+Upcoming messages display a live countdown such as **Sends in 2h 15m 30s**, updated every second while the queue is open. When the scheduled time arrives, it shows **Due now** until sending starts. Recurring messages count down to their next send; globally paused schedules show **Sending paused**.
+
 Discord must stay open, connected, and signed in to the account that created the message. Times follow your device's timezone. Messages and sent history are stored locally on this device.
 
 Messages more than one minute late stop for review by default; adjust the grace period in settings. Failed or interrupted deliveries are never automatically retried. Check the channel before rescheduling an uncertain delivery. Missed recurring schedules stop until you reschedule them.
