@@ -1,0 +1,326 @@
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2026 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+.vc-ms {
+    color: var(--text-normal, #dbdee1);
+    font-family: var(--font-primary, sans-serif);
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 4px 0;
+}
+
+.vc-ms button, .vc-ms input, .vc-ms select, .vc-ms textarea {
+    font: inherit;
+}
+
+.vc-ms-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--background-modifier-accent, #ffffff14);
+}
+
+.vc-ms-tabs > button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-muted, #949ba4);
+    padding: 10px 14px;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.vc-ms-tabs > button[aria-selected="true"] {
+    color: var(--text-normal, #dbdee1);
+    border-bottom-color: var(--brand-500, #5865f2);
+}
+
+.vc-ms-count, .vc-ms-status {
+    border-radius: 5px;
+    padding: 1px 7px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--background-modifier-accent, #ffffff14);
+}
+
+.vc-ms-info, .vc-ms-error, .vc-ms-warning, .vc-ms-success {
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    background: var(--background-secondary, #2b2d31);
+    font-size: 12px;
+}
+
+.vc-ms-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-muted, #949ba4);
+}
+
+.vc-ms-info svg {
+    flex-shrink: 0;
+}
+
+.vc-ms-error, .vc-ms-card-error {
+    color: var(--text-danger, #fa777c);
+}
+
+.vc-ms-warning {
+    color: var(--text-warning, #f0b232);
+}
+
+.vc-ms-success {
+    color: var(--text-positive, #42c98f);
+}
+
+.vc-ms-form, .vc-ms-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.vc-ms-form {
+    gap: 16px;
+}
+
+.vc-ms-destination {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow-wrap: anywhere;
+}
+
+.vc-ms-eyebrow {
+    color: var(--text-muted, #949ba4);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+}
+
+.vc-ms-field > span {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.vc-ms-muted, .vc-ms-help, .vc-ms-meta {
+    color: var(--text-muted, #949ba4);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.vc-ms-help {
+    margin: -8px 0 0;
+}
+
+.vc-ms-checkbox input {
+    accent-color: var(--brand-500, #5865f2);
+    width: 16px;
+    height: 16px;
+}
+
+.vc-ms input:not([type="checkbox"]), .vc-ms select, .vc-ms textarea {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid var(--background-modifier-accent, #ffffff14);
+    border-radius: 7px;
+    padding: 10px 12px;
+    background: var(--input-background, var(--background-tertiary, #1e1f22));
+    color: var(--text-normal, #dbdee1);
+}
+
+.vc-ms input[type="datetime-local"] {
+    color-scheme: dark light;
+}
+
+.vc-ms textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+}
+
+.vc-ms textarea::placeholder {
+    color: var(--text-muted, #949ba4);
+}
+
+.vc-ms-fields {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 16px;
+}
+
+.vc-ms-fields > * {
+    min-width: 0;
+}
+
+.vc-ms-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.vc-ms-queue-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.vc-ms-queue-toolbar select {
+    width: auto;
+    min-width: 0;
+}
+
+.vc-ms-queue-toolbar button {
+    flex-shrink: 0;
+}
+
+.vc-ms-queue {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vc-ms-card {
+    padding: 16px;
+    background: var(--background-secondary, #2b2d31);
+    border: 1px solid var(--background-modifier-accent, #ffffff14);
+    border-radius: 10px;
+}
+
+.vc-ms-card-header {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.vc-ms-card-header strong {
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.vc-ms-status {
+    text-transform: capitalize;
+    white-space: nowrap;
+    color: var(--text-muted, #949ba4);
+}
+
+.vc-ms-status[data-status="scheduled"], .vc-ms-status[data-status="sending"] {
+    color: var(--text-link, #8b9aff);
+}
+
+.vc-ms-status[data-status="sent"] {
+    color: var(--text-positive, #42c98f);
+}
+
+.vc-ms-status[data-status="missed"], .vc-ms-status[data-status="paused"] {
+    color: var(--text-warning, #f0b232);
+}
+
+.vc-ms-status[data-status="failed"] {
+    color: var(--text-danger, #fa777c);
+}
+
+.vc-ms-message {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    margin: 12px 0;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.vc-ms-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin-bottom: 12px;
+}
+
+.vc-ms-card-error {
+    font-size: 12px;
+    margin: 8px 0;
+}
+
+.vc-ms-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.vc-ms-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 36px 16px;
+    color: var(--text-muted, #949ba4);
+}
+
+.vc-ms-empty svg {
+    margin-bottom: 16px;
+    opacity: 0.6;
+}
+
+.vc-ms-empty strong {
+    color: var(--text-normal, #dbdee1);
+    font-size: 16px;
+}
+
+.vc-ms-empty p {
+    margin-top: 6px;
+}
+
+.vc-ms-settings p {
+    margin-bottom: 16px;
+}
+
+.vc-ms-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+.vc-ms button:disabled, .vc-ms input:disabled, .vc-ms textarea:disabled, .vc-ms select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.vc-ms button:focus-visible, .vc-ms input:focus-visible, .vc-ms select:focus-visible, .vc-ms textarea:focus-visible {
+    outline: 2px solid var(--brand-500, #5865f2);
+    outline-offset: 2px;
+}
+
+
+@media (width <= 520px) {
+    .vc-ms-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .vc-ms-card-header {
+        flex-wrap: wrap;
+    }
+
+    .vc-ms-queue-toolbar {
+        flex-wrap: wrap;
+    }
+}
